@@ -8,5 +8,11 @@ public class Viajero {
     }
 
 
-    //TODO implementar GET/SET o cambiar a publico.
+    public String getNombreViajero() {
+        return nombreViajero;
+    }
+
+    public String getDni(){
+        return dni;
+    }
 }

@@ -4,6 +4,12 @@ public class Asiento {
     private Viajero viajeroAsignado;
     private boolean asientoAsignado;
 
+
+
+    public Asiento(int codigoAsiento){
+        codigoAsiento = codigoAsiento;
+    }
+
     public Asiento(int codigoAsiento, Viajero viajeroAsignado){
         this.codigoAsiento = codigoAsiento;
         this.viajeroAsignado = viajeroAsignado;
@@ -17,14 +23,16 @@ public class Asiento {
     }
 
     public void asignarAsiento(Viajero viajero){
-        //TODO implementar asignarAsiento
+        viajeroAsignado = viajero;
+        asientoAsignado = true;
     }
 
     public void desasignarAsiento(){
-        //TODO implementar desasignarAsiento
+        viajeroAsignado = null;
+        asientoAsignado = false;
     }
 
     public boolean estaAsignado(){
-        return this.asientoAsignado;
+        return asientoAsignado;
     }
 }
