@@ -1,7 +1,6 @@
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
-import java.io.IOException;
 import java.util.Calendar;
 import java.util.Scanner;
 
@@ -57,8 +56,6 @@ public class Oficina {
                 autobuses[totalAutobuses] = parseaAutobus(lector);
             }
         } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
             e.printStackTrace();
         }
     }
