@@ -7,8 +7,10 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class Parser {
-    private static final String DATOS_AUTOBUS = "autobuses.data";
-    private static final String DATOS_VIAJES = "G:\\Mi unidad\\Tecnologias de programacion\\AsignacionBilletes\\Prototipo0\\src\\viajes.data";
+    private static final String RUTA_EJECUCION = System.getProperty("user.dir");
+    private static final String DATOS_AUTOBUS = RUTA_EJECUCION + "\\autobuses.data";
+    //TODO cargar desde una variable de ejecucion
+    private static final String DATOS_VIAJES = RUTA_EJECUCION + "\\viajes.data";
 
     private static final int VIAJE = 3;
     private static final int AUTOBUS = 2;
@@ -24,39 +26,6 @@ public class Parser {
 
 
     public Parser(String ruta, int tipo){
-
-    }
-
-    private void cargarInformacionAutobuses(){
-        String leido;
-        Scanner lector;
-
-        try {
-            //TODO acabar metodo cargarInformacion
-            File ficheroDatosAutobus = new File(DATOS_AUTOBUS);
-            lector = new Scanner(ficheroDatosAutobus);
-            while (lector.hasNext()){
-                //autobuses[totalAutobuses] = parseaAutobus(lector);
-            }
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
-    }
-
-    private static Autobus parseaAutobus(Scanner lector){
-        int codigoAutobus;
-        Asiento[] asientos;
-        codigoAutobus = lector.nextInt();
-        asientos = parseLineaAsientos(lector.nextLine());
-        Autobus autobus = new Autobus(asientos, codigoAutobus);
-
-        return autobus;
-    }
-
-    private static Asiento[] parseLineaAsientos(String linea){
-        Scanner lectorAsiento = new Scanner(linea);
-        Asiento[] asientos;
-        return asientos = null;
 
     }
 
@@ -95,11 +64,44 @@ public class Parser {
         return new Viaje(Integer.parseInt(m.group(1)), m.group(2), m.group(3), parseaFecha(fechas));
     }
 
-    private static Date parseaFecha(String[] args){
-        int[] fechas = new int[args.length];
-        for (int i = 0; i < args.length; i++){
-            fechas[i] = Integer.parseInt(args[i]);
+    private static Date parseaFecha(String[] cadenaFechas){
+        int[] fechas = new int[cadenaFechas.length];
+        for (int i = 0; i < cadenaFechas.length; i++){
+            fechas[i] = Integer.parseInt(cadenaFechas[i]);
         }
-        return new GregorianCalendar(fechas[0], fechas[1], fechas[2], fechas[3], fechas[4]).getTime();
+        return new GregorianCalendar(fechas[0], fechas[1] - 1, fechas[2], fechas[3], fechas[4]).getTime();
+    }
+
+    private void cargarInformacionAutobuses(){
+        String leido;
+        Scanner lector;
+
+        try {
+            //TODO acabar metodo cargarInformacion
+            File ficheroDatosAutobus = new File(DATOS_AUTOBUS);
+            lector = new Scanner(ficheroDatosAutobus);
+            while (lector.hasNext()){
+                //autobuses[totalAutobuses] = parseaAutobus(lector);
+            }
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private static Autobus parseaAutobus(Scanner lector){
+        int codigoAutobus;
+        Asiento[] asientos;
+        codigoAutobus = lector.nextInt();
+        asientos = parseLineaAsientos(lector.nextLine());
+        Autobus autobus = new Autobus(asientos, codigoAutobus);
+
+        return autobus;
+    }
+
+    private static Asiento[] parseLineaAsientos(String linea){
+        Scanner lectorAsiento = new Scanner(linea);
+        Asiento[] asientos;
+        return asientos = null;
+
     }
 }
