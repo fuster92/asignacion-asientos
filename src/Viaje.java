@@ -37,5 +37,14 @@ public class Viaje {
     }
 
 
-
+    @Override
+    public String toString() {
+        return "Viaje{" +
+                "codigo=" + codigo +
+                ", origen='" + origen + '\'' +
+                ", destino='" + destino + '\'' +
+                ", fechaViaje=" + fechaViaje +
+                ", autobus=" + autobus +
+                '}';
+    }
 }

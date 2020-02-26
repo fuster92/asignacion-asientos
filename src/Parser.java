@@ -8,7 +8,7 @@ import java.util.regex.Pattern;
 
 public class Parser {
     private static final String DATOS_AUTOBUS = "autobuses.data";
-    private static final String DATOS_VIAJES = "viajes.data";
+    private static final String DATOS_VIAJES = "G:\\Mi unidad\\Tecnologias de programacion\\AsignacionBilletes\\Prototipo0\\src\\viajes.data";
 
     private static final int VIAJE = 3;
     private static final int AUTOBUS = 2;
@@ -56,7 +56,6 @@ public class Parser {
     private static Asiento[] parseLineaAsientos(String linea){
         Scanner lectorAsiento = new Scanner(linea);
         Asiento[] asientos;
-        //TODO 2 parseador de asientos
         return asientos = null;
 
     }
@@ -83,20 +82,17 @@ public class Parser {
         Pattern patronViaje = Pattern.compile(PATRON_VIAJE);
         Matcher capturador = patronViaje.matcher(lineaViaje);
         while (capturador.find()){
-            parseaViaje(capturador);
+            Viaje viaje = parseaViaje(capturador);
+            System.out.println(viaje);
         }
 
     }
 
-    public static void parseaViaje(Matcher m){
-        //TODO retocar parseaViaje
+    public static Viaje parseaViaje(Matcher m){
 
-        String[] fechas = {m.group()};
+        String[] fechas = {m.group(4), m.group(5), m.group(6), m.group(7), m.group(8)};
 
-        return new Viaje(m.group(1), m.group(2), m.group(3), parseaFecha(m.));
-        for (int i = 1; i < m.groupCount(); i++){
-            System.out.println(m.group(i));
-        }
+        return new Viaje(Integer.parseInt(m.group(1)), m.group(2), m.group(3), parseaFecha(fechas));
     }
 
     private static Date parseaFecha(String[] args){
