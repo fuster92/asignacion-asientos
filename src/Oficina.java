@@ -1,11 +1,7 @@
-import java.io.BufferedReader;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.util.Calendar;
-import java.util.Scanner;
+import java.util.Date;
 
 public class Oficina {
-    private static final String DATOS_AUTOBUS = "autobuses.data";
+
     private static final int VIAJES_MAXIMOS = 100;
     private static final int AUTOBUSES_MAXIMOS = 100;
 
@@ -20,7 +16,8 @@ public class Oficina {
         this.autobuses = autobuses;
     }
 
-    public void crearViaje(int codigo, String origen, String destino, Calendar fechaViaje, Autobus autobus ){
+    //TODO preguntar si el codigo de viaje lo puedo utilizar como indice
+    public void crearViaje(int codigo, String origen, String destino, Date fechaViaje, Autobus autobus ){
         viajes[totalViajes] = new Viaje(codigo, origen, destino, fechaViaje, autobus);
         totalViajes++;
         autobuses[totalAutobuses] = autobus;
@@ -41,40 +38,5 @@ public class Oficina {
         viaje.desasignarAsiento(numero);
     }
 
-    private void cargarInformacionAutobus(){
-        String leido;
-        Scanner lector;
 
-        try {
-            //TODO 1 quitar este código
-            BufferedReader ficheroEntrada =
-                    new BufferedReader(
-                            new FileReader(DATOS_AUTOBUS));
-
-            lector = new Scanner(ficheroEntrada);
-            while (lector.hasNext()){
-                autobuses[totalAutobuses] = parseaAutobus(lector);
-            }
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
-    }
-
-    private static Autobus parseaAutobus(Scanner lector){
-        int codigoAutobus;
-        Asiento[] asientos;
-        codigoAutobus = lector.nextInt();
-        asientos = parseLineaAsientos(lector.nextLine());
-        Autobus autobus = new Autobus(asientos, codigoAutobus);
-
-        return autobus;
-    }
-
-    private static Asiento[] parseLineaAsientos(String linea){
-        Scanner lectorAsiento = new Scanner(linea);
-        Asiento[] asientos;
-        //TODO 2 parseador de asientos
-        return asientos = null;
-
-    }
 }
