@@ -1,14 +1,22 @@
-import java.util.Calendar;
+import java.util.Date;
 
 public class Viaje {
 
     private int codigo;
     private String origen;
     private String destino;
-    private Calendar fechaViaje;
+    private Date fechaViaje;
     private Autobus autobus;
 
-    public Viaje(int codigo, String origen, String destino, Calendar fechaViaje, Autobus autobus) {
+
+    public Viaje(int codigo, String origen, String destino, Date fechaViaje) {
+        this.codigo = codigo;
+        this.origen = origen;
+        this.destino = destino;
+        this.fechaViaje = fechaViaje;
+    }
+
+    public Viaje(int codigo, String origen, String destino, Date fechaViaje, Autobus autobus) {
         this.codigo = codigo;
         this.origen = origen;
         this.destino = destino;
@@ -24,6 +32,19 @@ public class Viaje {
         autobus.desasignarAsiento(numero);
     }
 
+    public void asignarAutobus(Autobus autobus){
+        this.autobus = autobus;
+    }
 
 
+    @Override
+    public String toString() {
+        return "Viaje{" +
+                "codigo=" + codigo +
+                ", origen='" + origen + '\'' +
+                ", destino='" + destino + '\'' +
+                ", fechaViaje=" + fechaViaje +
+                ", autobus=" + autobus +
+                '}';
+    }
 }

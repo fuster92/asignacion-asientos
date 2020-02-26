@@ -1,10 +1,6 @@
-import java.io.*;
-import java.util.Scanner;
-
 public class Autobus {
-    private static int ASIENTOS_MAXIMOS = 65;
-
     private Asiento[] asientos;
+    //TODO Clase posicion para guardar la posicion de cada asiento dentro de su propio autobus?
     private int identificadorAutobus;
 
     public Autobus(int identificadorAutobus){
